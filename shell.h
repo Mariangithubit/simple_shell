@@ -35,6 +35,9 @@
  * @linecount: the count of lines
  * @countline_flag: the input of count line
  * @status: the return status
+ * @err_num: error number
+ * @alias: alias node
+ * @env: environment linked list
  */
 typedef struct information
 {
@@ -45,4 +48,40 @@ typedef struct information
         unsigned int linecount;
         int countline_flag;
         int status;
+	int err_num;
+	list_t *alias;
+	list_t *env;
+
 }func_t;
+
+/**
+ * strlist - linked string.
+ * @num: the number
+ * @str: the string
+ * @next: points to the next node
+ */
+typedef struct strlist
+{
+	int num;
+	char *str;
+	struct strlist *next;
+}list_t;
+
+/*active.c*/
+int active(func_t *func);
+int delimiter(char c, char *delim);
+int alpha(int c);
+int atoi(char *s);
+
+/*exit_cd_help.c*/
+int exit(func_t *func);
+int cd((func_t *func);
+int help(func_t *func);
+
+/*alias.c*/
+int set_alias(func_t *func, char *str);
+int unset_alias(func_t *func);
+int alias(func_t *func);
+int p_alias(list_t *node);
+
+#endif
