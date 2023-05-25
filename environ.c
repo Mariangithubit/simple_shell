@@ -58,11 +58,11 @@ int unsetenv(func_t *func)
 {
 	int i;
 
-        if (func->argc == 1)
-        {
-                p_puts("Wrong number\n");
-                return (1);
-        }
+	if (func->argc == 1)
+	{
+		p_puts("Wrong number\n");
+		return (1);
+	}
 	for (i = 1; i<= func->argc; i++)
 		unsetenv(func, func->argv[i]);
 	return (0);
