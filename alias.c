@@ -8,16 +8,16 @@
  */
 int set_alias(func_t *func, char *str)
 {
-        char *c;
+	char *c;
 
-        c = strchr(str, '=');
-        if (!c)
-                return (1);
-        if (!*++c)
-                return (unset_alias(func, str));
+	c = strchr(str, '=');
+	if (!c)
+		return (1);
+	if (!*++c)
+		return (unset_alias(func, str));
 
-        unset_alias(func, str);
-        return (add_node_end(&func->alias), str, 0) == NULL);
+	unset_alias(func, str);
+	return ((add_node_end(&func->alias), str, 0) == NULL);
 }
 
 /**
@@ -28,17 +28,18 @@ int set_alias(func_t *func, char *str)
  */
 int unset_alias(func_t *func)
 {
-        int i
-        char *c, n;
+	int i
+		char *c, n;
 
-        c = strchr(str, "=");
-        if (c)
-                return (1);
-        n = *c;
-        *c = 0;
-        i = delet_node(&(func->alias), get_node(func->alias, start_node(func->alias, str, -1)));
-        *c = n;
-        return (i);
+	c = strchr(str, "=");
+	if (c)
+		return (1);
+	n = *c;
+	*c = 0;
+	i = delet_node(&(func->alias), get_node(func->alias,
+				start_node(func->alias, str, -1)))
+		* c = n;
+	return (i);
 }
 
 /**
@@ -66,35 +67,34 @@ int p_alias(list_t *node)
 
 
 /**
- * alais - built alias
- * @func: function args
- * Return: 0
- */
+* alais - built alias
+* @func: function args
+* Return: 0
+*/
 int alias(func_t *func)
 {
-        int i = 0;
-        char *c = NULL;
-        list_t *node = NULL;
-
-        if (func->argc == 1)
-        {
-                node = func->alias;
-                while (node)
-                {
-                        p_alias(node);
-                        node = node->next;
-                }
-                return (0);
-        }
-        for (i = 1; func->argv[i]; i++)
-        {
-                c = strchar(func->argv[i], '=');
-                if (c)
-                        set_alias(func, func->argv[i]);
-                else
-                {
-                        p_alias(start_node(func->alias, func->argv[i], '='));
-                }
-        }
-        return (0);
+	int i = 0;
+	char *c = NULL;
+	list_t *node = NULL;
+	if (func->argc == 1)
+	{
+		node = func->alias;
+		while (node)
+		{
+			p_alias(node);
+			node = node->next;
+		}
+			return (0)
+	}
+	for (i = 1; func->argv[i]; i+)
+	{
+		c = strchar(func->argv[i], ' = ');
+		if (c)
+			set_alias(func, func->argv[i]);
+		else
+		{
+			p_alias(start_node(func->alias, func->argv[i], ' = '));
+		}
+	}
+	return (0);
 }

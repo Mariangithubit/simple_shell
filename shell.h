@@ -15,7 +15,7 @@
 /*for read and write buffer*/
 #define READ_BUF_SIZE 1024
 #define WRITE_BUF_SIZE 1024
-#define BUF_FLUSH-1
+#define BUF_FLUSH -1
 
 /*for convert numbers*/
 #define CONVERT_LOWERCASE
@@ -70,8 +70,8 @@ typedef struct strlist
 /*active.c*/
 int active(func_t *func);
 int delimiter(char c, char *delim);
-int alpha(int c);
-int atoi(char *s);
+int alpha(int);
+int _atoi(char *);
 
 /*exit_cd_help.c*/
 int exit(func_t *func);
