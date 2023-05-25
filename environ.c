@@ -1,87 +1,94 @@
 #include "shell.h"
 
 /**
- * env - prints the current environment
- * @func: function of args
- * Return: 0
+ * _myenv – print all the current environ
+ * @info: Struct containing arguments that will use to
+ *          maintain the const funct prototype.
+ * Return: return 0
  */
-int env(func_t *func)
+int _myenv(info_t *info)
 {
-	p_list_str(func->env);
+	print_list_str(info->env);
 	return (0);
 }
 
 /**
- * getenv - get the value of env
- * @func: function of args
- * @name: name of env
- * Return: NULL
+ * _getenv - getting the value of the environmental var
+ * @info: Struct containing arguments that will use to
+ *          maintain the const funct prototype.
+ * @name: environment variable name
+ *
+ * Return: the value to be returned
  */
-char *getenv(func_t *func, const char *name)
+char *_getenv(info_t *info, const char *name)
 {
-	char *c;
-	list-t *node = func->env;
+	list_t *node = info->env;
+	char *p;
 
 	while (node)
 	{
-		c = start_with(node->str, name);
-		if (c && *c)
-			return (c);
+		p = starts_with(node->str, name);
+		if (p && *p)
+			return (p);
 		node = node->next;
 	}
 	return (NULL);
 }
 
 /**
- * setenv - Initialize a new environment variable, or modify an existing one
- * @func: function of args
- * Return: 0
+ * _mysetenv - Init a new env var,
+ *             or modify the existing env var
+ * @info: Struct containing arguments that will use to
+ *          maintain the const funct prototype.
+ *  Return: return 0
  */
-int setenv(func_t *func)
+int _mysetenv(info_t *info)
 {
-	if (func->argc != 3)
+	if (info->argc != 3)
 	{
-		p_puts("Wrong number\n");
+		_eputs("Incorrect number of arguements\n");
 		return (1);
 	}
-	if (setenv(func, func->argv[1], func->argv[2]))
+	if (_setenv(info, info->argv[1], info->argv[2]))
 		return (0);
 	return (1);
 }
 
 /**
- * unsetenv - Remove an environment variable
- * @func: function of args
- * Return: 0
+ * _myunsetenv - Remove the env var
+ * @info: Struct containing arguments that will use to
+ *	maintain the const funct prototype.
+ * Return: return 0
  */
-int unsetenv(func_t *func)
+int _myunsetenv(info_t *info)
 {
 	int i;
 
-	if (func->argc == 1)
+	if (info->argc == 1)
 	{
-		p_puts("Wrong number\n");
+		_eputs("Too few arguements.\n");
 		return (1);
 	}
-	for (i = 1; i<= func->argc; i++)
-		unsetenv(func, func->argv[i]);
+	for (i = 1; i <= info->argc; i++)
+		_unsetenv(info, info->argv[i]);
+
 	return (0);
 }
 
 /**
- * env_list - env linked list
- * @func: function of args
- * Return: 0
+ * populate_env_list - populates the environment linked list
+ * @info: Struct containing arguments that will use to
+ *          maintain the const funct prototype.
+ * Return: return 0
  */
-int env_list(func_t *func)
+int populate_env_list(info_t *info)
 {
-	size_t n;
 	list_t *node = NULL;
+	size_t i;
 
-	for (n = 0; environ[i]; i++)
-	{
-		add_node-end(&node, environ[i], 0);
-		func->env = node;
-	}
+	for (i = 0; environ[i]; i++)
+		add_node_end(&node, environ[i], 0);
+	info->env = node;
 	return (0);
 }
+
