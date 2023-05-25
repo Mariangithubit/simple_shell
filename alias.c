@@ -28,8 +28,13 @@ int set_alias(func_t *func, char *str)
  */
 int unset_alias(func_t *func)
 {
+<<<<<<< HEAD
 	int i
 		char *c, n;
+=======
+        int i;
+        char *c, n;
+>>>>>>> 4f0fecd60d109c6104c9dd021b28a49da6ab3c9e
 
 	c = strchr(str, "=");
 	if (c)
@@ -64,6 +69,7 @@ int p_alias(list_t *node)
 	}
 	return (1);
 }
+<<<<<<< HEAD
 
 
 /**
@@ -98,3 +104,5 @@ int alias(func_t *func)
 	}
 	return (0);
 }
+=======
+>>>>>>> 4f0fecd60d109c6104c9dd021b28a49da6ab3c9e

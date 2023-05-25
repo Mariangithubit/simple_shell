@@ -75,7 +75,7 @@ int _atoi(char *);
 
 /*exit_cd_help.c*/
 int exit(func_t *func);
-int cd((func_t *func);
+int cd(func_t *func);
 int help(func_t *func);
 
 /*alias.c*/
@@ -84,4 +84,14 @@ int unset_alias(func_t *func);
 int alias(func_t *func);
 int p_alias(list_t *node);
 
+/*environ.c*/
+int env(func_t *func);
+char *getenv(func_t *func, const char *name);
+int setenv(func_t *func);
+int unsetenv(func_t *func);
+int env_list(func_t *func);
+
+/*p_putchar.c*/
+void p_puts(char *str);
+int p_putchar(char c);
 #endif
